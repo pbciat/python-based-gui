@@ -97,7 +97,7 @@ window.title("誠實包子")
 window.geometry("800x600")
 window.configure(background = "aquamarine")
 
-image_file = tk.PhotoImage(file = "D:\\107-2 商管程式設計\\Final project\\TW.png")
+image_file = tk.PhotoImage(file = "C:\\Users\\章倫\\Documents\\GitHub\\python-based-gui\\TW.png")
 coverImg = tk.Label(window, bg = "aquamarine", image = image_file)
 
 coverBtn = tk.Label(window, text = "Press \"b\" to start", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 18, height = 1)
