@@ -26,7 +26,7 @@ for text in positive_list:
     fpath = 'pos/' + text + '.png'
     outpath = download_file(img_url, fpath)
     print(outpath)
-    time.sleep(0.8)
+    time.sleep(0.2)
 
 for text in negative_list:
     url = 'http://api.img4me.com/?text=%s&font=arial&fcolor=000000&size=10&type=png&size=35' % text
@@ -39,4 +39,4 @@ for text in negative_list:
     fpath = 'neg/' + text + '.png'
     outpath = download_file(img_url, fpath)
     print(outpath)
-    time.sleep(0.8)
+    time.sleep(0.2)
