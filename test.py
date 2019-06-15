@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import ImageTk, Image
 import random
 import time
 
@@ -260,17 +261,21 @@ def controlcore(event):
 def showquestion():
     global count
     global question
-    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-    question.place(x = 300, y = 200)
+    global image_file
+    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
+    question = tk.Label(window, image = image_file)
+    question.place(x = 200, y = 50)
     count += 1
     window.bind("<KeyPress>", controlcore)
     
 def showquestionwrong():
     global count
     global question
+    global image_file
     wronganswer.destroy()
-    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-    question.place(x = 300, y = 200)
+    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
+    question = tk.Label(window, image = image_file)
+    question.place(x = 200, y = 50)
     count += 1
     window.bind("<KeyPress>", controlcore)
 
@@ -278,8 +283,10 @@ def showquestion_time():
     global count
     global question
     global t_start
-    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-    question.place(x = 300, y = 200)
+    global image_file
+    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
+    question = tk.Label(window, image = image_file)
+    question.place(x = 200, y = 50)
     count += 1
     t_start = time.time()
     window.bind("<KeyPress>", controlcore)
@@ -288,9 +295,11 @@ def showquestionwrong_time():
     global count
     global question
     global t_start
+    global image_file
     wronganswer.destroy()
-    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-    question.place(x = 300, y = 200)
+    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
+    question = tk.Label(window, image = image_file)
+    question.place(x = 200, y = 50)
     count += 1
     t_start = time.time()
     window.bind("<KeyPress>", controlcore)
@@ -324,11 +333,13 @@ def showwronganswer():
 def showfirstquestion(ins):
     global question
     global count
+    global image_file
     coverBtn.place_forget()
     coverIns.place_forget()
     ins.destroy()
-    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-    question.place(x = 300, y = 200)
+    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
+    question = tk.Label(window, image = image_file)
+    question.place(x = 200, y = 50)
     count += 1
     window.bind("<KeyPress>", controlcore)
 
@@ -336,11 +347,13 @@ def showfirstquestion_time(ins):
     global question
     global count
     global t_start
+    global image_file
     coverBtn.place_forget()
     coverIns.place_forget()
     ins.destroy()
-    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-    question.place(x = 300, y = 200)
+    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
+    question = tk.Label(window, image = image_file)
+    question.place(x = 200, y = 50)
     count += 1
     t_start = time.time()
     window.bind("<KeyPress>", controlcore)
