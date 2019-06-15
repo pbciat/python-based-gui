@@ -435,8 +435,8 @@ def printresult():
 
 DPP_list = ["DPP/A.png", "DPP/B.jpg", "DPP/C.jpg", "DPP/D.jpg", "DPP/E.jpg", "DPP/F.jpg", "DPP/G.jpg", "DPP/H.jpg", "DPP/I.jpg", "DPP/J.jpg"]
 KMT_list = ["KMT/A.png", "KMT/B.jpg", "KMT/C.jpg", "KMT/D.jpg", "KMT/E.jpg", "KMT/F.jpg", "KMT/G.jpg", "KMT/H.jpg", "KMT/I.png", "KMT/J.jpg"]
-positive_list = ["POS/真誠.png","POS/卓越.png","POS/進步.png","POS/開明.png","POS/友善.png","POS/大方.png","POS/機智.png","POS/愛台.png","POS/清廉.png", "POS/勤政.png"]
-negative_list = ["NEG/虛偽.png","NEG/拙劣.png","NEG/退步.png","NEG/獨裁.png","NEG/惡劣.png","NEG/小氣.png","NEG/愚昧.png","NEG/賣台.png","NEG/貪汙.png", "NEG/怠惰.png"]
+positive_list = ['POS/' + str(i) + '.png' for i in range(1, 11)]
+negative_list = ['NEG/' + str(i) + '.png' for i in range(1, 11)]
 left_ans = ["left"]*10
 right_ans = ["right"]*10
 cnpts = ["c"]*10
