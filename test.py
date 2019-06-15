@@ -457,7 +457,7 @@ window.title("誠實包子")
 window.geometry("800x600")
 window.configure(background = "aquamarine")
 
-image_file = tk.PhotoImage(file = "C:\\Users\\章倫\\Documents\\GitHub\\python-based-gui\\TW.png")
+image_file = tk.PhotoImage(file = "TW.png")
 coverImg = tk.Label(window, bg = "aquamarine", image = image_file)
 
 coverBtn = tk.Label(window, text = "Press \"s\" to start", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 18, height = 1)
@@ -504,6 +504,7 @@ window.mainloop()
 undone
 相對路徑
 模組化
+排版
 
 maybe
 音檔
