@@ -5,12 +5,22 @@ import time
 def controlcore(event):
     global count
     global question
-    global wrongcount
+    global wronganswer
     global t_start
     global block3_DPPtime_list
     global block3_KMTtime_list
+    global block5_DPPtime_list
+    global block5_KMTtime_list
+    global block3_wrongcount
+    global block5_wrongcount
+    global block3_practice
+    global block5_practice
+    global block3_DPPtime_total
+    global block3_KMTtime_total
+    global block5_DPPtime_total
+    global block5_KMTtime_total
     if stimulate_list[count][3] == "01":
-        if event.keysym == "s":
+        if event.keysym == "s" or event.keysym == "S":
             coverImg.destroy()
             block01Ins.place(x = 300, y = 200)
             block01BtnLeft.place(x = 180, y = 500)
@@ -19,7 +29,7 @@ def controlcore(event):
             window.bind("<KeyPress>", controlcore)
     
     elif stimulate_list[count][3] == 1 and stimulate_list[count - 1][3] == "01":
-        if event.keysym == "s":
+        if event.keysym == "s" or event.keysym == "S":
             coverBtn.place_forget()
             coverIns.place_forget()
             block01Ins.destroy()
@@ -29,56 +39,41 @@ def controlcore(event):
             window.bind("<KeyPress>", controlcore)
 
     elif stimulate_list[count][3] == 1:
-        if event.keysym == "e" or event.keysym == "i":
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
             question.destroy()
-            if event.keysym == "e":
+            if event.keysym == "e" or event.keysym == "E":
                 if stimulate_list[count - 1][1] == "right":
-                   #錯
-                    print("You are wrong!")
+                    showwronganswer()
+                    window.after(500, showquestionwrong)
                 else:
-                    #對
-                    print("You are right!")
+                    showquestion()
 
-            elif event.keysym == "i":
+            elif event.keysym == "i" or event.keysym == "I":
                 if stimulate_list[count - 1][1] == "right":
-                    #對
-                    print("You are right!")
+                    showquestion()
                 else:
-                    #錯
-                    print("You are wrong!")
-            question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-            question.place(x = 300, y = 200)
-            count += 1
-            window.bind("<KeyPress>", controlcore)
+                    showwronganswer()
+                    window.after(500, showquestionwrong)
 
     elif stimulate_list[count][3] == 12 and stimulate_list[count - 1][3] == 1:
-        if event.keysym == "e" or event.keysym == "i":
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
             question.destroy()
-            if event.keysym == "e":
+            if event.keysym == "e" or event.keysym == "E":
                 if stimulate_list[count - 1][1] == "right":
-                   #錯
-                    print("You are wrong!")
+                    showwronganswer()
+                    window.after(500, showinstructionwrong(block02Ins, block02BtnLeft, block02BtnRight))
                 else:
-                    #對
-                    print("You are right!")
+                    showinstruction(block02Ins, block02BtnLeft, block02BtnRight)
 
-            elif event.keysym == "i":
+            elif event.keysym == "i" or event.keysym == "I":
                 if stimulate_list[count - 1][1] == "right":
-                    #對
-                    print("You are right!")
+                    showinstruction(block02Ins, block02BtnLeft, block02BtnRight)
                 else:
-                    #錯
-                    print("You are wrong!")
-            block02Ins.place(x = 300, y = 200)
-            block02BtnLeft.place(x = 180, y = 500)
-            block02BtnRight.place(x = 540, y = 500)
-            coverBtn.place(x = 310, y = 500)
-            coverIns.place(x = 350, y = 540)
-            count += 1
-            window.bind("<KeyPress>", controlcore)
+                    showwronganswer()
+                    window.after(500, showinstructionwrong(block02Ins, block02BtnLeft, block02BtnRight))
 
     elif stimulate_list[count][3] == 2 and stimulate_list[count - 1][3] == 12:
-        if event.keysym == "s":
+        if event.keysym == "s" or event.keysym == "S":
             coverBtn.place_forget()
             coverIns.place_forget()
             block02Ins.destroy()
@@ -88,56 +83,41 @@ def controlcore(event):
             window.bind("<KeyPress>", controlcore)
 
     elif stimulate_list[count][3] == 2:
-        if event.keysym == "e" or event.keysym == "i":
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
             question.destroy()
-            if event.keysym == "e":
+            if event.keysym == "e" or event.keysym == "E":
                 if stimulate_list[count - 1][1] == "right":
-                   #錯
-                    print("You are wrong!")
+                    showwronganswer()
+                    window.after(500, showquestionwrong)
                 else:
-                    #對
-                    print("You are right!")
+                    showquestion()
 
-            elif event.keysym == "i":
+            elif event.keysym == "i" or event.keysym == "I":
                 if stimulate_list[count - 1][1] == "right":
-                    #對
-                    print("You are right!")
+                    showquestion()
                 else:
-                    #錯
-                    print("You are wrong!")
-            question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-            question.place(x = 300, y = 200)
-            count += 1
-            window.bind("<KeyPress>", controlcore)
+                    showwronganswer()
+                    window.after(500, showquestionwrong)
 
     elif stimulate_list[count][3] == 23 and stimulate_list[count - 1][3] == 2:
-        if event.keysym == "e" or event.keysym == "i":
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
             question.destroy()
-            if event.keysym == "e":
+            if event.keysym == "e" or event.keysym == "E":
                 if stimulate_list[count - 1][1] == "right":
-                   #錯
-                    print("You are wrong!")
+                    showwronganswer()
+                    window.after(500, showinstructionwrong(block03Ins, block03BtnLeft, block03BtnRight))
                 else:
-                    #對
-                    print("You are right!")
+                    showinstruction(block03Ins, block03BtnLeft, block03BtnRight)
 
-            elif event.keysym == "i":
+            elif event.keysym == "i" or event.keysym == "I":
                 if stimulate_list[count - 1][1] == "right":
-                    #對
-                    print("You are right!")
+                    showinstruction(block03Ins, block03BtnLeft, block03BtnRight)
                 else:
-                    #錯
-                    print("You are wrong!")
-            block03Ins.place(x = 300, y = 200)
-            block03BtnLeft.place(x = 180, y = 500)
-            block03BtnRight.place(x = 540, y = 500)
-            coverBtn.place(x = 310, y = 500)
-            coverIns.place(x = 350, y = 540)
-            count += 1
-            window.bind("<KeyPress>", controlcore)
+                    showwronganswer()
+                    window.after(500, showinstructionwrong(block03Ins, block03BtnLeft, block03BtnRight))
 
     elif stimulate_list[count][3] == 3 and stimulate_list[count - 1][3] == 23:
-        if event.keysym == "s":
+        if event.keysym == "s" or event.keysym == "S":
             coverBtn.place_forget()
             coverIns.place_forget()
             block03Ins.destroy()
@@ -148,43 +128,263 @@ def controlcore(event):
             window.bind("<KeyPress>", controlcore)
 
     elif stimulate_list[count][3] == 3:
-        if event.keysym == "e" or event.keysym == "i":
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
+            t_end = time.time()
+            block3_practice += 1
+            question.destroy()
+            if event.keysym == "e" or event.keysym == "E":
+                if stimulate_list[count - 1][1] == "right":
+                    if block3_practice >= 8:
+                        block3_wrongcount += 1
+                    showwronganswer()
+                    window.after(500, showquestionwrong_time)
+                else:
+                    if block3_practice >= 8:
+                        if stimulate_list[count - 1][2] == "c":
+                            time_span = t_end - t_start
+                            block3_DPPtime_list.append(time_span)
+                    showquestion_time()
+
+            elif event.keysym == "i" or event.keysym == "I":
+                if stimulate_list[count - 1][1] == "right":
+                    if block3_practice >= 8:
+                        if stimulate_list[count - 1][2] == "c":
+                            time_span = t_end - t_start
+                            block3_KMTtime_list.append(time_span)
+                    showquestion_time()
+                else:
+                    if block3_practice >= 8:
+                        block3_wrongcount += 1
+                    showwronganswer()
+                    window.after(500, showquestionwrong_time)
+
+    elif stimulate_list[count][3] == 34 and stimulate_list[count - 1][3] == 3:
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
             t_end = time.time()
             question.destroy()
-            if event.keysym == "e":
+            if event.keysym == "e" or event.keysym == "E":
                 if stimulate_list[count - 1][1] == "right":
-                    #錯
-                    if stimulate_list[count - 1][2] == "c":
-                        wrongcount += 1
-                    print("You are wrong!")
+                    block3_wrongcount += 1
+                    showwronganswer()
+                    window.after(500, showinstructionwrong(block04Ins, block04BtnLeft, block04BtnRight))
                 else:
                     if stimulate_list[count - 1][2] == "c":
                         time_span = t_end - t_start
                         block3_DPPtime_list.append(time_span)
-                    #對
-                    print("You are right!")
+                    showinstruction(block04Ins, block04BtnLeft, block04BtnRight)
 
-            elif event.keysym == "i":
+            elif event.keysym == "i" or event.keysym == "I":
                 if stimulate_list[count - 1][1] == "right":
                     if stimulate_list[count - 1][2] == "c":
                         time_span = t_end - t_start
                         block3_KMTtime_list.append(time_span)
-                    #對
-                    print("You are right!")
+                    showinstruction(block04Ins, block04BtnLeft, block04BtnRight)
                 else:
-                    #錯
-                    if stimulate_list[count - 1][2] == "c":
-                        wrongcount += 1
-                    print("You are wrong!")
-            print(block3_DPPtime_list, block3_KMTtime_list, wrongcount)
+                    block3_wrongcount += 1
+                    showwronganswer()
+                    window.after(500, showinstructionwrong(block04Ins, block04BtnLeft, block04BtnRight))
+
+    elif stimulate_list[count][3] == 4 and stimulate_list[count - 1][3] == 34:
+        if event.keysym == "s" or event.keysym == "S":
+            coverBtn.place_forget()
+            coverIns.place_forget()
+            block04Ins.destroy()
+            question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
+            question.place(x = 300, y = 200)
+            count += 1
+            window.bind("<KeyPress>", controlcore)
+
+    elif stimulate_list[count][3] == 4:
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
+            question.destroy()
+            if event.keysym == "e" or event.keysym == "E":
+                if stimulate_list[count - 1][1] == "right":
+                    showwronganswer()
+                    window.after(500, showquestionwrong)
+                else:
+                    showquestion()
+
+            elif event.keysym == "i" or event.keysym == "I":
+                if stimulate_list[count - 1][1] == "right":
+                    showquestion()
+                else:
+                    showwronganswer()
+                    window.after(500, showquestionwrong)
+
+    elif stimulate_list[count][3] == 45 and stimulate_list[count - 1][3] == 4:
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
+            question.destroy()
+            if event.keysym == "e" or event.keysym == "E":
+                if stimulate_list[count - 1][1] == "right":
+                    showwronganswer()
+                    window.after(500, showinstructionwrong(block05Ins, block05BtnLeft, block05BtnRight))
+                else:
+                    showinstruction(block05Ins, block05BtnLeft, block05BtnRight)
+
+            elif event.keysym == "i" or event.keysym == "I":
+                if stimulate_list[count - 1][1] == "right":
+                    showinstruction(block05Ins, block05BtnLeft, block05BtnRight)
+                else:
+                    showwronganswer()
+                    window.after(500, showinstructionwrong(block05Ins, block05BtnLeft, block05BtnRight))
+
+    elif stimulate_list[count][3] == 5 and stimulate_list[count - 1][3] == 45:
+        if event.keysym == "s" or event.keysym == "S":
+            coverBtn.place_forget()
+            coverIns.place_forget()
+            block05Ins.destroy()
             question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
             question.place(x = 300, y = 200)
             count += 1
             t_start = time.time()
             window.bind("<KeyPress>", controlcore)
 
+    elif stimulate_list[count][3] == 5:
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
+            t_end = time.time()
+            block5_practice += 1
+            question.destroy()
+            if event.keysym == "e" or event.keysym == "E":
+                if stimulate_list[count - 1][1] == "right":
+                    if block5_practice >= 8:
+                        block5_wrongcount += 1
+                    showwronganswer()
+                    window.after(500, showquestionwrong_time)
+                else:
+                    if block5_practice >= 8:
+                        if stimulate_list[count - 1][2] == "c":
+                            time_span = t_end - t_start
+                            block5_KMTtime_list.append(time_span)
+                    showquestion_time()
 
+            elif event.keysym == "i" or event.keysym == "I":
+                if stimulate_list[count - 1][1] == "right":
+                    if block5_practice >= 8:
+                        if stimulate_list[count - 1][2] == "c":
+                            time_span = t_end - t_start
+                            block5_DPPtime_list.append(time_span)
+                    showquestion_time()
+                else:
+                    if block5_practice >= 8:
+                        block5_wrongcount += 1
+                    showwronganswer()
+                    window.after(500, showquestionwrong_time)
 
+    else:
+        if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
+            t_end = time.time()
+            question.destroy()
+            if event.keysym == "e" or event.keysym == "E":
+                if stimulate_list[count - 1][1] == "right":
+                    block5_wrongcount += 1
+                    showwronganswer()
+                    window.after(500, wronganswer.destroy)
+                else:
+                    if stimulate_list[count - 1][2] == "c":
+                        time_span = t_end - t_start
+                        block5_KMTtime_list.append(time_span)
+
+            elif event.keysym == "i" or event.keysym == "I":
+                if stimulate_list[count - 1][1] == "right":
+                    if stimulate_list[count - 1][2] == "c":
+                        time_span = t_end - t_start
+                        block5_DPPtime_list.append(time_span)
+                else:
+                    block5_wrongcount += 1
+                    showwronganswer()
+                    window.after(500, wronganswer.destroy)
+
+            if block3_wrongcount >= 16 or block5_wrongcount  >= 16:
+                block_result = tk.Label(window, text = "Too many wrong answers!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
+                block_result.place(x = 200, y = 200)
+            else:
+                for i in range(len(block3_DPPtime_list)):
+                    block3_DPPtime_total += block3_DPPtime_list[i]
+                for i in range(len(block3_KMTtime_list)):
+                    block3_KMTtime_total += block3_KMTtime_list[i]
+                for i in range(len(block5_DPPtime_list)):
+                    block5_DPPtime_total += block5_DPPtime_list[i]
+                for i in range(len(block5_KMTtime_list)):
+                    block5_KMTtime_total += block5_KMTtime_list[i]
+                block3_DPPtime_average = round((block3_DPPtime_total / len(block3_DPPtime_list)), 4)
+                block3_KMTtime_average = round((block3_KMTtime_total / len(block3_KMTtime_list)), 4)
+                block5_DPPtime_average = round((block5_DPPtime_total / len(block5_DPPtime_list)), 4)
+                block5_KMTtime_average = round((block5_KMTtime_total / len(block3_KMTtime_list)), 4)
+                block3_average = round(((block3_DPPtime_total + block3_KMTtime_total) / (len(block3_DPPtime_list) + len(block3_KMTtime_list))), 4)
+                block5_average = round(((block5_DPPtime_total + block5_KMTtime_total) / (len(block5_DPPtime_list) + len(block5_KMTtime_list))), 4)
+                if block3_average < block5_average - 0.15:
+                    block_result = tk.Label(window, text = "You are DPPer!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
+                    block_result.place(x = 200, y = 200)
+                elif block3_average - 0.05 > block5_average:
+                    block_result = tk.Label(window, text = "You are KMTer!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
+                    block_result.place(x = 200, y = 200)
+                else:
+                    block_result = tk.Label(window, text = "You are Neutral!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
+                    block_result.place(x = 200, y = 200)
+
+def showquestion():
+    global count
+    global question
+    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
+    question.place(x = 300, y = 200)
+    count += 1
+    window.bind("<KeyPress>", controlcore)
+    
+def showquestionwrong():
+    global count
+    global question
+    wronganswer.destroy()
+    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
+    question.place(x = 300, y = 200)
+    count += 1
+    window.bind("<KeyPress>", controlcore)
+
+def showquestion_time():
+    global count
+    global question
+    global t_start
+    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
+    question.place(x = 300, y = 200)
+    count += 1
+    t_start = time.time()
+    window.bind("<KeyPress>", controlcore)
+
+def showquestionwrong_time():
+    global count
+    global question
+    global t_start
+    wronganswer.destroy()
+    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
+    question.place(x = 300, y = 200)
+    count += 1
+    t_start = time.time()
+    window.bind("<KeyPress>", controlcore)
+
+def showinstruction(ins, btnLeft, btnRight):
+    global count
+    ins.place(x = 300, y = 200)
+    btnLeft.place(x = 180, y = 500)
+    btnRight.place(x = 540, y = 500)
+    coverBtn.place(x = 310, y = 500)
+    coverIns.place(x = 350, y = 540)
+    count += 1
+    window.bind("<KeyPress>", controlcore) 
+
+def showinstructionwrong(ins, btnLeft, btnRight):
+    global count
+    wronganswer.destroy()
+    ins.place(x = 300, y = 200)
+    btnLeft.place(x = 180, y = 500)
+    btnRight.place(x = 540, y = 500)
+    coverBtn.place(x = 310, y = 500)
+    coverIns.place(x = 350, y = 540)
+    count += 1
+    window.bind("<KeyPress>", controlcore) 
+
+def showwronganswer():
+    global wronganswer
+    wronganswer = tk.Label(window, text = "Wrong Answer!", bg = "whitesmoke", fg = "red", font = ("微軟正黑體", 28), width = 20, height = 3)
+    wronganswer.place(x = 200, y = 200)   
 
 DPP_list = ["DPP/A.png", "DPP/B.jpg", "DPP/C.jpg", "DPP/D.jpg", "DPP/E.jpg", "DPP/F.jpg", "DPP/G.jpg", "DPP/H.jpg", "DPP/I.jpg", "DPP/J.jpg"]
 KMT_list = ["KMT/A.png", "KMT/B.jpg", "KMT/C.jpg", "KMT/D.jpg", "KMT/E.jpg", "KMT/F.jpg", "KMT/G.jpg", "KMT/H.jpg", "KMT/I.png", "KMT/J.jpg"]
@@ -248,7 +448,8 @@ block12_list = [("正面E\n負面I", "s", "ins", 12)]
 block23_list = [("民進黨 正面E\n國民黨 負面I", "s", "ins", 23)]
 block34_list = [("國民黨E\n民進黨I", "s", "ins", 34)]
 block45_list = [("國民黨 正面E\民進黨 負面I", "s", "ins", 45)]
-stimulate_list = block01_list + block1_list + block12_list + block2_list + block23_list + block3_list + block34_list + block4_list + block45_list + block5_list
+block56_list = [(0,0,0,0)]
+stimulate_list = block01_list + block1_list + block12_list + block2_list + block23_list + block3_list + block34_list + block4_list + block45_list + block5_list + block56_list
 
 
 window = tk.Tk()
@@ -274,11 +475,37 @@ block02BtnRight = tk.Label(window, text = "負面I", bg = "whitesmoke", fg = "gr
 block03Ins = tk.Label(window, text = "民進黨 正面E\n國民黨 負面I", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
 block03BtnLeft = tk.Label(window, text = "民進黨 正面E", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 10, height = 2)
 block03BtnRight = tk.Label(window, text = "國民黨 負面I", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 10, height = 2)
+block04Ins = tk.Label(window, text = "國民黨E\n民進黨I", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
+block04BtnLeft = tk.Label(window, text = "國民黨E", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 10, height = 2)
+block04BtnRight = tk.Label(window, text = "民進黨I", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 10, height = 2)
+block05Ins = tk.Label(window, text = "國民黨 正面E\n民進黨 負面I", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
+block05BtnLeft = tk.Label(window, text = "國民黨 正面E", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 10, height = 2)
+block05BtnRight = tk.Label(window, text = "民進黨 負面I", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 10, height = 2)
 
-wrongcount = 0
 count = 0
 block3_DPPtime_list = []
 block3_KMTtime_list = []
+block5_DPPtime_list = []
+block5_KMTtime_list = []
+block3_wrongcount = 0
+block5_wrongcount = 0
+block3_practice = 0
+block5_practice = 0
 window.bind("<KeyPress>", controlcore)
 
+block3_DPPtime_total = 0
+block3_KMTtime_total = 0
+block5_DPPtime_total = 0
+block5_KMTtime_total = 0
+
 window.mainloop()
+
+"""
+undone
+相對路徑
+模組化
+
+maybe
+音檔
+圖示
+"""
