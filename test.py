@@ -14,7 +14,6 @@ def controlcore(event):
     global block3_practice
     global block5_practice
     global detect_key
-    detect_key = True
     if stimulate_list[count][3] == "01":
         if (event.keysym == "s" or event.keysym == "S") and detect_key == True:
             detect_key = False
@@ -539,6 +538,7 @@ block3_wrongcount = 0
 block5_wrongcount = 0
 block3_practice = 0
 block5_practice = 0
+detect_key = True
 window.bind("<KeyPress>", controlcore)
 
 block3_DPPtime_total = 0
