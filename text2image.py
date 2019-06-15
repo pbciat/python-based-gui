@@ -6,7 +6,6 @@ from PIL import Image, ImageOps
 def resize(img_path):
     desired_size = 400
     im = Image.open(img_path)
-
     # Add padding
     delta_w = desired_size - im.size[0]  #im.size is list [width, height]
     delta_h = desired_size - im.size[1]
