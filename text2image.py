@@ -1,6 +1,19 @@
 import time
 import requests
 import shutil
+from PIL import Image, ImageOps
+
+def resize(img_path):
+    desired_size = 400
+    im = Image.open(img_path)
+
+    # Add padding
+    delta_w = desired_size - im.size[0]  #im.size is list [width, height]
+    delta_h = desired_size - im.size[1]
+    padding = (delta_w//2, delta_h//2, delta_w-(delta_w//2), delta_h-(delta_h//2))
+    new_im = ImageOps.expand(im, padding)
+    new_im.save(img_path)
+    return img_path
 
 def download_file(url, fpath):
     with requests.get(url, stream=True) as r:
@@ -23,9 +36,10 @@ for text in positive_list:
     response.encoding = 'utf-8'
     img_url = response.text
     # Second request to download image
-    fpath = 'pos/' + text + '.png'
+    fpath = 'POS/' + text + '.png'
     outpath = download_file(img_url, fpath)
     print(outpath)
+    resize(outpath)
     time.sleep(0.2)
 
 for text in negative_list:
@@ -36,7 +50,8 @@ for text in negative_list:
     response.encoding = 'utf-8'
     img_url = response.text
     # Second request to download image
-    fpath = 'neg/' + text + '.png'
+    fpath = 'NEG/' + text + '.png'
     outpath = download_file(img_url, fpath)
     print(outpath)
+    resize(outpath)
     time.sleep(0.2)
