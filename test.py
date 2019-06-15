@@ -4,9 +4,6 @@ import time
 
 def controlcore(event):
     global count
-    global question
-    global wronganswer
-    global t_start
     global block3_DPPtime_list
     global block3_KMTtime_list
     global block5_DPPtime_list
@@ -15,10 +12,6 @@ def controlcore(event):
     global block5_wrongcount
     global block3_practice
     global block5_practice
-    global block3_DPPtime_total
-    global block3_KMTtime_total
-    global block5_DPPtime_total
-    global block5_KMTtime_total
     if stimulate_list[count][3] == "01":
         if event.keysym == "s" or event.keysym == "S":
             coverImg.destroy()
@@ -262,41 +255,8 @@ def controlcore(event):
                     showwronganswer()
                     window.after(500, wronganswer.destroy)
 
-            if len(block3_DPPtime_list) != 0 and len(block3_KMTtime_list) != 0 and len(block5_DPPtime_list) != 0 and len(block3_KMTtime_list) != 0 and block3_wrongcount < 16 and block5_wrongcount < 16:
-                for i in range(len(block3_DPPtime_list)):
-                    block3_DPPtime_total += block3_DPPtime_list[i]
-                for i in range(len(block3_KMTtime_list)):
-                    block3_KMTtime_total += block3_KMTtime_list[i]
-                for i in range(len(block5_DPPtime_list)):
-                    block5_DPPtime_total += block5_DPPtime_list[i]
-                for i in range(len(block5_KMTtime_list)):
-                    block5_KMTtime_total += block5_KMTtime_list[i]
-                block3_DPPtime_average = round((block3_DPPtime_total / len(block3_DPPtime_list)), 4)
-                block3_KMTtime_average = round((block3_KMTtime_total / len(block3_KMTtime_list)), 4)
-                block5_DPPtime_average = round((block5_DPPtime_total / len(block5_DPPtime_list)), 4)
-                block5_KMTtime_average = round((block5_KMTtime_total / len(block5_KMTtime_list)), 4)
-                block3_average = round(((block3_DPPtime_total + block3_KMTtime_total) / (len(block3_DPPtime_list) + len(block3_KMTtime_list))), 4)
-                block5_average = round(((block5_DPPtime_total + block5_KMTtime_total) / (len(block5_DPPtime_list) + len(block5_KMTtime_list))), 4)
-                if block3_average < block5_average - 0.05:
-                    block_result = tk.Label(window, text = "You are DPPer!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
-                    block_result.place(x = 200, y = 200)
-                elif block3_average - 0.03 > block5_average:
-                    block_result = tk.Label(window, text = "You are KMTer!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
-                    block_result.place(x = 200, y = 200)
-                else:
-                    block_result = tk.Label(window, text = "You are Neutral!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
-                    block_result.place(x = 200, y = 200)
-                print("block3 average DPP time: ", block3_DPPtime_average)
-                print("block3 average KMT time: ", block3_KMTtime_average)
-                print("block3 average time: ", block3_average)
-                print()
-                print("block5 average DPP time: ", block5_DPPtime_average)
-                print("block5 average KMT time: ", block5_KMTtime_average)
-                print("block5 average time: ", block5_average)
-            else:
-                block_result = tk.Label(window, text = "Too many wrong answers!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
-                block_result.place(x = 200, y = 200)
-                print("No result")
+            printresult()
+
 def showquestion():
     global count
     global question
@@ -384,6 +344,47 @@ def showfirstquestion_time(ins):
     count += 1
     t_start = time.time()
     window.bind("<KeyPress>", controlcore)
+
+def printresult():
+    global block3_DPPtime_total
+    global block3_KMTtime_total
+    global block5_DPPtime_total
+    global block5_KMTtime_total
+    if len(block3_DPPtime_list) != 0 and len(block3_KMTtime_list) != 0 and len(block5_DPPtime_list) != 0 and len(block3_KMTtime_list) != 0 and block3_wrongcount < 16 and block5_wrongcount < 16:
+        for i in range(len(block3_DPPtime_list)):
+            block3_DPPtime_total += block3_DPPtime_list[i]
+        for i in range(len(block3_KMTtime_list)):
+            block3_KMTtime_total += block3_KMTtime_list[i]
+        for i in range(len(block5_DPPtime_list)):
+            block5_DPPtime_total += block5_DPPtime_list[i]
+        for i in range(len(block5_KMTtime_list)):
+            block5_KMTtime_total += block5_KMTtime_list[i]
+        block3_DPPtime_average = round((block3_DPPtime_total / len(block3_DPPtime_list)), 4)
+        block3_KMTtime_average = round((block3_KMTtime_total / len(block3_KMTtime_list)), 4)
+        block5_DPPtime_average = round((block5_DPPtime_total / len(block5_DPPtime_list)), 4)
+        block5_KMTtime_average = round((block5_KMTtime_total / len(block5_KMTtime_list)), 4)
+        block3_average = round(((block3_DPPtime_total + block3_KMTtime_total) / (len(block3_DPPtime_list) + len(block3_KMTtime_list))), 4)
+        block5_average = round(((block5_DPPtime_total + block5_KMTtime_total) / (len(block5_DPPtime_list) + len(block5_KMTtime_list))), 4)
+        if block3_average < block5_average - 0.05:
+            block_result = tk.Label(window, text = "You are DPPer!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
+            block_result.place(x = 200, y = 200)
+        elif block3_average - 0.03 > block5_average:
+            block_result = tk.Label(window, text = "You are KMTer!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
+            block_result.place(x = 200, y = 200)
+        else:
+            block_result = tk.Label(window, text = "You are Neutral!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
+            block_result.place(x = 200, y = 200)
+        print("block3 average DPP time: ", block3_DPPtime_average)
+        print("block3 average KMT time: ", block3_KMTtime_average)
+        print("block3 average time: ", block3_average)
+        print()
+        print("block5 average DPP time: ", block5_DPPtime_average)
+        print("block5 average KMT time: ", block5_KMTtime_average)
+        print("block5 average time: ", block5_average)
+    else:
+        block_result = tk.Label(window, text = "Too many wrong answers!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
+        block_result.place(x = 200, y = 200)
+        print("No result")
 
 DPP_list = ["DPP/A.png", "DPP/B.jpg", "DPP/C.jpg", "DPP/D.jpg", "DPP/E.jpg", "DPP/F.jpg", "DPP/G.jpg", "DPP/H.jpg", "DPP/I.jpg", "DPP/J.jpg"]
 KMT_list = ["KMT/A.png", "KMT/B.jpg", "KMT/C.jpg", "KMT/D.jpg", "KMT/E.jpg", "KMT/F.jpg", "KMT/G.jpg", "KMT/H.jpg", "KMT/I.png", "KMT/J.jpg"]
