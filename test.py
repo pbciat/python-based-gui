@@ -30,13 +30,7 @@ def controlcore(event):
     
     elif stimulate_list[count][3] == 1 and stimulate_list[count - 1][3] == "01":
         if event.keysym == "s" or event.keysym == "S":
-            coverBtn.place_forget()
-            coverIns.place_forget()
-            block01Ins.destroy()
-            question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-            question.place(x = 300, y = 200)
-            count += 1
-            window.bind("<KeyPress>", controlcore)
+            showfirstquestion(block01Ins)
 
     elif stimulate_list[count][3] == 1:
         if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
@@ -74,13 +68,7 @@ def controlcore(event):
 
     elif stimulate_list[count][3] == 2 and stimulate_list[count - 1][3] == 12:
         if event.keysym == "s" or event.keysym == "S":
-            coverBtn.place_forget()
-            coverIns.place_forget()
-            block02Ins.destroy()
-            question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-            question.place(x = 300, y = 200)
-            count += 1
-            window.bind("<KeyPress>", controlcore)
+            showfirstquestion(block02Ins)
 
     elif stimulate_list[count][3] == 2:
         if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
@@ -118,14 +106,7 @@ def controlcore(event):
 
     elif stimulate_list[count][3] == 3 and stimulate_list[count - 1][3] == 23:
         if event.keysym == "s" or event.keysym == "S":
-            coverBtn.place_forget()
-            coverIns.place_forget()
-            block03Ins.destroy()
-            question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-            question.place(x = 300, y = 200)
-            count += 1
-            t_start = time.time()
-            window.bind("<KeyPress>", controlcore)
+            showfirstquestion_time(block03Ins)
 
     elif stimulate_list[count][3] == 3:
         if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
@@ -186,13 +167,7 @@ def controlcore(event):
 
     elif stimulate_list[count][3] == 4 and stimulate_list[count - 1][3] == 34:
         if event.keysym == "s" or event.keysym == "S":
-            coverBtn.place_forget()
-            coverIns.place_forget()
-            block04Ins.destroy()
-            question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-            question.place(x = 300, y = 200)
-            count += 1
-            window.bind("<KeyPress>", controlcore)
+            showfirstquestion(block04Ins)
 
     elif stimulate_list[count][3] == 4:
         if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
@@ -230,14 +205,7 @@ def controlcore(event):
 
     elif stimulate_list[count][3] == 5 and stimulate_list[count - 1][3] == 45:
         if event.keysym == "s" or event.keysym == "S":
-            coverBtn.place_forget()
-            coverIns.place_forget()
-            block05Ins.destroy()
-            question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
-            question.place(x = 300, y = 200)
-            count += 1
-            t_start = time.time()
-            window.bind("<KeyPress>", controlcore)
+            showfirstquestion_time(block05Ins)
 
     elif stimulate_list[count][3] == 5:
         if event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I":
@@ -294,10 +262,7 @@ def controlcore(event):
                     showwronganswer()
                     window.after(500, wronganswer.destroy)
 
-            if block3_wrongcount >= 16 or block5_wrongcount  >= 16:
-                block_result = tk.Label(window, text = "Too many wrong answers!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
-                block_result.place(x = 200, y = 200)
-            else:
+            if len(block3_DPPtime_list) != 0 and len(block3_KMTtime_list) != 0 and len(block5_DPPtime_list) != 0 and len(block3_KMTtime_list) != 0 and block3_wrongcount < 16 and block5_wrongcount < 16:
                 for i in range(len(block3_DPPtime_list)):
                     block3_DPPtime_total += block3_DPPtime_list[i]
                 for i in range(len(block3_KMTtime_list)):
@@ -309,19 +274,29 @@ def controlcore(event):
                 block3_DPPtime_average = round((block3_DPPtime_total / len(block3_DPPtime_list)), 4)
                 block3_KMTtime_average = round((block3_KMTtime_total / len(block3_KMTtime_list)), 4)
                 block5_DPPtime_average = round((block5_DPPtime_total / len(block5_DPPtime_list)), 4)
-                block5_KMTtime_average = round((block5_KMTtime_total / len(block3_KMTtime_list)), 4)
+                block5_KMTtime_average = round((block5_KMTtime_total / len(block5_KMTtime_list)), 4)
                 block3_average = round(((block3_DPPtime_total + block3_KMTtime_total) / (len(block3_DPPtime_list) + len(block3_KMTtime_list))), 4)
                 block5_average = round(((block5_DPPtime_total + block5_KMTtime_total) / (len(block5_DPPtime_list) + len(block5_KMTtime_list))), 4)
-                if block3_average < block5_average - 0.15:
+                if block3_average < block5_average - 0.05:
                     block_result = tk.Label(window, text = "You are DPPer!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
                     block_result.place(x = 200, y = 200)
-                elif block3_average - 0.05 > block5_average:
+                elif block3_average - 0.03 > block5_average:
                     block_result = tk.Label(window, text = "You are KMTer!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
                     block_result.place(x = 200, y = 200)
                 else:
                     block_result = tk.Label(window, text = "You are Neutral!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
                     block_result.place(x = 200, y = 200)
-
+                print("block3 average DPP time: ", block3_DPPtime_average)
+                print("block3 average KMT time: ", block3_KMTtime_average)
+                print("block3 average time: ", block3_average)
+                print()
+                print("block5 average DPP time: ", block5_DPPtime_average)
+                print("block5 average KMT time: ", block5_KMTtime_average)
+                print("block5 average time: ", block5_average)
+            else:
+                block_result = tk.Label(window, text = "Too many wrong answers!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
+                block_result.place(x = 200, y = 200)
+                print("No result")
 def showquestion():
     global count
     global question
@@ -385,6 +360,30 @@ def showwronganswer():
     global wronganswer
     wronganswer = tk.Label(window, text = "Wrong Answer!", bg = "whitesmoke", fg = "red", font = ("微軟正黑體", 28), width = 20, height = 3)
     wronganswer.place(x = 200, y = 200)   
+
+def showfirstquestion(ins):
+    global question
+    global count
+    coverBtn.place_forget()
+    coverIns.place_forget()
+    ins.destroy()
+    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
+    question.place(x = 300, y = 200)
+    count += 1
+    window.bind("<KeyPress>", controlcore)
+
+def showfirstquestion_time(ins):
+    global question
+    global count
+    global t_start
+    coverBtn.place_forget()
+    coverIns.place_forget()
+    ins.destroy()
+    question = tk.Label(window, text = stimulate_list[count][0], bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
+    question.place(x = 300, y = 200)
+    count += 1
+    t_start = time.time()
+    window.bind("<KeyPress>", controlcore)
 
 DPP_list = ["DPP/A.png", "DPP/B.jpg", "DPP/C.jpg", "DPP/D.jpg", "DPP/E.jpg", "DPP/F.jpg", "DPP/G.jpg", "DPP/H.jpg", "DPP/I.jpg", "DPP/J.jpg"]
 KMT_list = ["KMT/A.png", "KMT/B.jpg", "KMT/C.jpg", "KMT/D.jpg", "KMT/E.jpg", "KMT/F.jpg", "KMT/G.jpg", "KMT/H.jpg", "KMT/I.png", "KMT/J.jpg"]
