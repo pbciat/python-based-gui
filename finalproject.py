@@ -365,8 +365,8 @@ def showfirstquestion(ins):
     global count
     global image_file
     global detect_key
-    coverBtn.place_forget()
-    coverIns.place_forget()
+    coverBtn.pack_forget()
+    coverIns.pack_forget()
     ins.destroy()
     image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
     question = tk.Label(window, image = image_file)
@@ -381,8 +381,8 @@ def showfirstquestion_time(ins):
     global t_start
     global image_file
     global detect_key
-    coverBtn.place_forget()
-    coverIns.place_forget()
+    coverBtn.pack_forget()
+    coverIns.pack_forget()
     ins.destroy()
     image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
     question = tk.Label(window, image = image_file)
