@@ -435,8 +435,8 @@ def printresult():
 
 DPP_list = ["DPP/A.png", "DPP/B.jpg", "DPP/C.jpg", "DPP/D.jpg", "DPP/E.jpg", "DPP/F.jpg", "DPP/G.jpg", "DPP/H.jpg", "DPP/I.jpg", "DPP/J.jpg"]
 KMT_list = ["KMT/A.png", "KMT/B.jpg", "KMT/C.jpg", "KMT/D.jpg", "KMT/E.jpg", "KMT/F.jpg", "KMT/G.jpg", "KMT/H.jpg", "KMT/I.png", "KMT/J.jpg"]
-positive_list = ["POS/真誠.png","POS/卓越.png","POS/進步.png","POS/開明.png","POS/友善.png","POS/大方.png","POS/機智.png","POS/愛台.png","POS/清廉.png", "POS/勤政.png"]
-negative_list = ["NEG/虛偽.png","NEG/拙劣.png","NEG/退步.png","NEG/獨裁.png","NEG/惡劣.png","NEG/小氣.png","NEG/愚昧.png","NEG/賣台.png","NEG/貪汙.png", "NEG/怠惰.png"]
+positive_list = ['POS/' + str(i) + '.png' for i in range(1, 11)]
+negative_list = ['NEG/' + str(i) + '.png' for i in range(1, 11)]
 left_ans = ["left"]*10
 right_ans = ["right"]*10
 cnpts = ["c"]*10
@@ -509,9 +509,9 @@ coverImg = tk.Label(window, bg = "aquamarine", image = image_file)
 
 coverBtn = tk.Label(window, text = "Press \"s\" to start", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 18, height = 1)
 coverIns= tk.Label(window, text = "按鍵盤\"s\"繼續", bg = "aquamarine", fg = "white", font = ("微軟正黑體", 12), width = 10, height = 2)
-coverImg.place(x = 0, y = 50)
-coverBtn.place(x = 310, y = 500)
-coverIns.place(x = 350, y = 540)
+coverImg.pack(pady = "50")
+coverBtn.pack(pady = "20")
+coverIns.pack()
 
 block01Ins = tk.Label(window, text = "民進黨E\n國民黨I", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
 block01BtnLeft = tk.Label(window, text = "民進黨E", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 10, height = 2)

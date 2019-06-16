@@ -27,7 +27,7 @@ positive_list = ["真誠","卓越","進步","開明","友善","大方","機智",
 negative_list = ["虛偽","拙劣","退步","獨裁","惡劣","小氣","愚昧","賣台","貪汙", "怠惰"]
 
 
-for text in positive_list:
+for i, text in enumerate(positive_list):
     url = 'http://api.img4me.com/?text=%s&font=arial&fcolor=000000&size=10&type=png&size=35' % text
     
     # Get Image Url
@@ -35,13 +35,13 @@ for text in positive_list:
     response.encoding = 'utf-8'
     img_url = response.text
     # Second request to download image
-    fpath = 'POS/' + text + '.png'
+    fpath = 'POS/' + str(i + 1) + '.png'
     outpath = download_file(img_url, fpath)
     print(outpath)
     resize(outpath)
     time.sleep(0.2)
 
-for text in negative_list:
+for i, text in enumerate(negative_list):
     url = 'http://api.img4me.com/?text=%s&font=arial&fcolor=000000&size=10&type=png&size=35' % text
     
     # Get Image Url
@@ -49,7 +49,7 @@ for text in negative_list:
     response.encoding = 'utf-8'
     img_url = response.text
     # Second request to download image
-    fpath = 'NEG/' + text + '.png'
+    fpath = 'NEG/' + str(i + 1) + '.png'
     outpath = download_file(img_url, fpath)
     print(outpath)
     resize(outpath)
