@@ -509,9 +509,9 @@ coverImg = tk.Label(window, bg = "aquamarine", image = image_file)
 
 coverBtn = tk.Label(window, text = "Press \"s\" to start", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 18, height = 1)
 coverIns= tk.Label(window, text = "按鍵盤\"s\"繼續", bg = "aquamarine", fg = "white", font = ("微軟正黑體", 12), width = 10, height = 2)
-coverImg.place(x = 0, y = 50)
-coverBtn.place(x = 310, y = 500)
-coverIns.place(x = 350, y = 540)
+coverImg.pack(pady = "50")
+coverBtn.pack(pady = "20")
+coverIns.pack()
 
 block01Ins = tk.Label(window, text = "民進黨E\n國民黨I", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 10, height = 3)
 block01BtnLeft = tk.Label(window, text = "民進黨E", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 12), width = 10, height = 2)
