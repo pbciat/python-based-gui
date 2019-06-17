@@ -336,6 +336,7 @@ stimulate_list = block01_list + block1_list + block12_list + block2_list + block
 
 
 window = tk.Tk()
+window.iconbitmap("包子.ico")
 window.title("誠實包子")
 window.geometry("800x600")
 window.configure(background = "aquamarine")
@@ -384,12 +385,3 @@ block5_DPPtime_total = 0
 block5_KMTtime_total = 0
 
 window.mainloop()
-
-"""
-undone
-模組化
-排版
-
-maybe
-圖示
-"""
