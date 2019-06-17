@@ -18,7 +18,7 @@ def controlcore(event):
     elif stimulate_list[count][3] == 1:
         main(event)
 
-    elif stimulate_list[count][3] == 12 and stimulate_list[count - 1][3] == 1:
+    elif stimulate_list[count][3] == 12:
         main_instruction(event, showinstruction, block02Ins, block02BtnLeft, block02BtnRight)
 
     elif stimulate_list[count][3] == 2 and stimulate_list[count - 1][3] == 12:
@@ -27,7 +27,7 @@ def controlcore(event):
     elif stimulate_list[count][3] == 2:
         main(event)
 
-    elif stimulate_list[count][3] == 23 and stimulate_list[count - 1][3] == 2:
+    elif stimulate_list[count][3] == 23:
         main_instruction(event, showinstruction, block03Ins, block03BtnLeft, block03BtnRight)
 
     elif stimulate_list[count][3] == 3 and stimulate_list[count - 1][3] == 23:
@@ -36,7 +36,7 @@ def controlcore(event):
     elif stimulate_list[count][3] == 3:
         main(event)
 
-    elif stimulate_list[count][3] == 34 and stimulate_list[count - 1][3] == 3:
+    elif stimulate_list[count][3] == 34:
         main_instruction(event, showinstruction, block04Ins, block04BtnLeft, block04BtnRight)
 
     elif stimulate_list[count][3] == 4 and stimulate_list[count - 1][3] == 34:
@@ -45,7 +45,7 @@ def controlcore(event):
     elif stimulate_list[count][3] == 4:
         main(event)
 
-    elif stimulate_list[count][3] == 45 and stimulate_list[count - 1][3] == 4:
+    elif stimulate_list[count][3] == 45:
         main_instruction(event, showinstruction, block05Ins, block05BtnLeft, block05BtnRight)
 
     elif stimulate_list[count][3] == 5 and stimulate_list[count - 1][3] == 45:
@@ -54,7 +54,7 @@ def controlcore(event):
     elif stimulate_list[count][3] == 5:
         main(event)
 
-    elif stimulate_list[count][3] == 6:
+    elif stimulate_list[count][3] == 56:
         main(event)
         printresult()
 
@@ -76,7 +76,7 @@ def main(event):
         if stimulate_list[count][3] == 3:
             t_end = time.time()
             block3_practice += 1
-        elif stimulate_list[count][3] == 5 or stimulate_list[count][3] == 6:
+        elif stimulate_list[count][3] == 5 or stimulate_list[count][3] == 56:
             t_end = time.time()
             block5_practice += 1
         question.destroy()
@@ -85,10 +85,10 @@ def main(event):
             if stimulate_list[count - 1][1] == "right":
                 if stimulate_list[count][3] == 3 and block3_practice >= 8:
                     block3_wrongcount += 1
-                elif (stimulate_list[count][3] == 5 or stimulate_list[count][3] == 6) and block5_practice >= 8:
+                elif (stimulate_list[count][3] == 5 or stimulate_list[count][3] == 56) and block5_practice >= 8:
                     block5_wrongcount += 1
                 showwronganswer()
-                if stimulate_list[count][3] == 6:
+                if stimulate_list[count][3] == 56:
                     window.after(500, wronganswer.destroy)
                 else:
                     window.after(500, showquestion)
@@ -97,11 +97,11 @@ def main(event):
                     if stimulate_list[count - 1][2] == "c":
                         time_span = t_end - t_start
                         block3_DPPtime_list.append(time_span)
-                elif (stimulate_list[count][3] == 5 or stimulate_list[count][3] == 6) and block5_practice >= 8:
+                elif (stimulate_list[count][3] == 5 or stimulate_list[count][3] == 56) and block5_practice >= 8:
                     if stimulate_list[count - 1][2] == "c":
                         time_span = t_end - t_start
                         block5_KMTtime_list.append(time_span)
-                if stimulate_list[count][3] != 6:
+                if stimulate_list[count][3] != 56:
                     showquestion()
 
         elif event.keysym == "i" or event.keysym == "I":
@@ -110,19 +110,19 @@ def main(event):
                     if stimulate_list[count - 1][2] == "c":
                         time_span = t_end - t_start
                         block3_KMTtime_list.append(time_span)
-                elif (stimulate_list[count][3] == 5 or stimulate_list[count][3] == 6) and block5_practice >= 8:
+                elif (stimulate_list[count][3] == 5 or stimulate_list[count][3] == 56) and block5_practice >= 8:
                     if stimulate_list[count - 1][2] == "c":
                         time_span = t_end - t_start
                         block5_DPPtime_list.append(time_span)
-                if stimulate_list[count][3] != 6:
+                if stimulate_list[count][3] != 56:
                     showquestion()
             else:
                 if stimulate_list[count][3] == 3 and block3_practice >= 8:
                     block3_wrongcount += 1
-                elif (stimulate_list[count][3] == 5 or stimulate_list[count][3] == 6) and block5_practice >= 8:
+                elif (stimulate_list[count][3] == 5 or stimulate_list[count][3] == 56) and block5_practice >= 8:
                     block5_wrongcount += 1
                 showwronganswer()
-                if stimulate_list[count][3] == 6:
+                if stimulate_list[count][3] == 56:
                     window.after(500, wronganswer.destroy)
                 else:
                     window.after(500, showquestion)
@@ -330,8 +330,8 @@ block12_list = [("正面E\n負面I", "s", "ins", 12)]
 block23_list = [("民進黨 正面E\n國民黨 負面I", "s", "ins", 23)]
 block34_list = [("國民黨E\n民進黨I", "s", "ins", 34)]
 block45_list = [("國民黨 正面E\民進黨 負面I", "s", "ins", 45)]
-block56_list = [(0,0,0,6)]
-block_end = [(0,0,0,0)]
+block56_list = [(0,0,0,56)]
+block_end = [(0,0,0,6)]
 stimulate_list = block01_list + block1_list + block12_list + block2_list + block23_list + block3_list + block34_list + block4_list + block45_list + block5_list + block56_list + block_end
 
 
