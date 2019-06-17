@@ -141,12 +141,12 @@ def main_instruction(event, showinstruction, Ins, BtnLeft, BtnRight):
         
         if event.keysym == "e" or event.keysym == "E":
             if stimulate_list[count - 1][1] == "right":
-                if stimulate_list[count][3] == 3:
+                if stimulate_list[count - 1][3] == 3:
                     block3_wrongcount += 1
                 showwronganswer()
                 window.after(500, showinstruction(Ins, BtnLeft, BtnRight))
             else:
-                if stimulate_list[count][3] == 3:
+                if stimulate_list[count - 1][3] == 3:
                     if stimulate_list[count - 1][2] == "c":
                         time_span = t_end - t_start
                         block3_DPPtime_list.append(time_span)
@@ -154,13 +154,13 @@ def main_instruction(event, showinstruction, Ins, BtnLeft, BtnRight):
 
         elif event.keysym == "i" or event.keysym == "I":
             if stimulate_list[count - 1][1] == "right":
-                if stimulate_list[count][3] == 3:
+                if stimulate_list[count - 1][3] == 3:
                     if stimulate_list[count - 1][2] == "c":
                         time_span = t_end - t_start
                         block3_KMTtime_list.append(time_span)
                 showinstruction(Ins, BtnLeft, BtnRight)
             else:
-                if stimulate_list[count][3] == 3:
+                if stimulate_list[count - 1][3] == 3:
                     block3_wrongcount += 1
                 showwronganswer()
                 window.after(500, showinstruction(Ins, BtnLeft, BtnRight))
