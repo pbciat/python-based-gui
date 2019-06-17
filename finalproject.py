@@ -73,36 +73,7 @@ def controlcore(event):
         showfirstquestion(event, block03Ins)
 
     elif stimulate_list[count][3] == 3:
-        if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
-            detect_key = False
-            t_end = time.time()
-            block3_practice += 1
-            question.destroy()
-            if event.keysym == "e" or event.keysym == "E":
-                if stimulate_list[count - 1][1] == "right":
-                    if block3_practice >= 8:
-                        block3_wrongcount += 1
-                    showwronganswer()
-                    window.after(500, showquestion)
-                else:
-                    if block3_practice >= 8:
-                        if stimulate_list[count - 1][2] == "c":
-                            time_span = t_end - t_start
-                            block3_DPPtime_list.append(time_span)
-                    showquestion()
-
-            elif event.keysym == "i" or event.keysym == "I":
-                if stimulate_list[count - 1][1] == "right":
-                    if block3_practice >= 8:
-                        if stimulate_list[count - 1][2] == "c":
-                            time_span = t_end - t_start
-                            block3_KMTtime_list.append(time_span)
-                    showquestion()
-                else:
-                    if block3_practice >= 8:
-                        block3_wrongcount += 1
-                    showwronganswer()
-                    window.after(500, showquestion)
+        main(event)
 
     elif stimulate_list[count][3] == 34 and stimulate_list[count - 1][3] == 3:
         if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
@@ -159,36 +130,7 @@ def controlcore(event):
         showfirstquestion(event, block05Ins)
 
     elif stimulate_list[count][3] == 5:
-        if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
-            detect_key = False
-            t_end = time.time()
-            block5_practice += 1
-            question.destroy()
-            if event.keysym == "e" or event.keysym == "E":
-                if stimulate_list[count - 1][1] == "right":
-                    if block5_practice >= 8:
-                        block5_wrongcount += 1
-                    showwronganswer()
-                    window.after(500, showquestion)
-                else:
-                    if block5_practice >= 8:
-                        if stimulate_list[count - 1][2] == "c":
-                            time_span = t_end - t_start
-                            block5_KMTtime_list.append(time_span)
-                    showquestion()
-
-            elif event.keysym == "i" or event.keysym == "I":
-                if stimulate_list[count - 1][1] == "right":
-                    if block5_practice >= 8:
-                        if stimulate_list[count - 1][2] == "c":
-                            time_span = t_end - t_start
-                            block5_DPPtime_list.append(time_span)
-                    showquestion()
-                else:
-                    if block5_practice >= 8:
-                        block5_wrongcount += 1
-                    showwronganswer()
-                    window.after(500, showquestion)
+        main(event)
 
     else:
         if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
@@ -219,20 +161,58 @@ def controlcore(event):
 
 def main(event):
     global detect_key
+    global block3_practice
+    global block5_practice
+    global block3_wrongcount
+    global block5_wrongcount
+    global block3_DPPtime_list
+    global block3_KMTtime_list
+    global block5_DPPtime_list
+    global block5_KMTtime_list
     if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
         detect_key = False
+        if stimulate_list[count][3] == 3:
+            t_end = time.time()
+            block3_practice += 1
+        elif stimulate_list[count][3] == 5:
+            t_end = time.time()
+            block5_practice += 1
         question.destroy()
         if event.keysym == "e" or event.keysym == "E":
             if stimulate_list[count - 1][1] == "right":
+                if stimulate_list[count][3] == 3 and block3_practice >= 8:
+                    block3_wrongcount += 1
+                elif stimulate_list[count][3] == 5 and block5_practice >= 8:
+                    block5_wrongcount += 1
                 showwronganswer()
                 window.after(500, showquestion)
             else:
+                if stimulate_list[count][3] == 3 and block3_practice >= 8:
+                    if stimulate_list[count - 1][2] == "c":
+                        time_span = t_end - t_start
+                        block3_DPPtime_list.append(time_span)
+                elif stimulate_list[count][3] == 5 and block5_practice >= 8:
+                    if stimulate_list[count - 1][2] == "c":
+                        time_span = t_end - t_start
+                        block5_KMTtime_list.append(time_span)
                 showquestion()
 
         elif event.keysym == "i" or event.keysym == "I":
             if stimulate_list[count - 1][1] == "right":
+                if stimulate_list[count][3] == 3 and block3_practice >= 8:
+                    if stimulate_list[count - 1][2] == "c":
+                        time_span = t_end - t_start
+                        block3_KMTtime_list.append(time_span)
+                elif stimulate_list[count][3] == 5 and block5_practice >= 8:
+                    if stimulate_list[count - 1][2] == "c":
+                        time_span = t_end - t_start
+                        block5_DPPtime_list.append(time_span)
                 showquestion()
             else:
+                if stimulate_list[count][3] == 3 and block3_practice >= 8:
+                    block3_wrongcount += 1
+                elif stimulate_list[count][3] == 5 and block5_practice >= 8:
+                    block5_wrongcount += 1
                 showwronganswer()
                 window.after(500, showquestion)
 
