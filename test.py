@@ -423,11 +423,11 @@ def printresult():
             block_result.place(x = 200, y = 200)
         print("block3 average DPP time: ", block3_DPPtime_average)
         print("block3 average KMT time: ", block3_KMTtime_average)
-        print("block3 average time    : ", block3_average)
+        print("block3 average time: ", block3_average)
         print()
         print("block5 average DPP time: ", block5_DPPtime_average)
         print("block5 average KMT time: ", block5_KMTtime_average)
-        print("block5 average time    : ", block5_average)
+        print("block5 average time: ", block5_average)
     else:
         block_result = tk.Label(window, text = "Too many wrong answers!", bg = "whitesmoke", fg = "grey", font = ("微軟正黑體", 28), width = 20, height = 3)
         block_result.place(x = 200, y = 200)
@@ -550,6 +550,7 @@ window.mainloop()
 
 """
 undone
+相對路徑
 模組化
 排版
 
