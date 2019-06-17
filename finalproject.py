@@ -16,37 +16,16 @@ def controlcore(event):
     global detect_key
     if stimulate_list[count][3] == "01":
         if (event.keysym == "s" or event.keysym == "S") and detect_key == True:
-            detect_key = False
             coverImg.destroy()
-            block01Ins.place(x = 300, y = 200)
-            block01BtnLeft.place(x = 180, y = 500)
-            block01BtnRight.place(x = 540, y = 500)
-            count += 1
-            detect_key = True
-            window.bind("<KeyPress>", controlcore)
+            coverBtn.place_forget()
+            coverIns.place_forget()
+            showinstruction(block01Ins, block01BtnLeft, block01BtnRight)
     
     elif stimulate_list[count][3] == 1 and stimulate_list[count - 1][3] == "01":
-        if (event.keysym == "s" or event.keysym == "S") and detect_key == True:
-            detect_key = False
-            showfirstquestion(block01Ins)
+        showfirstquestion(event, block01Ins)
 
     elif stimulate_list[count][3] == 1:
-        if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
-            detect_key = False
-            question.destroy()
-            if event.keysym == "e" or event.keysym == "E":
-                if stimulate_list[count - 1][1] == "right":
-                    showwronganswer()
-                    window.after(500, showquestionwrong)
-                else:
-                    showquestion()
-
-            elif event.keysym == "i" or event.keysym == "I":
-                if stimulate_list[count - 1][1] == "right":
-                    showquestion()
-                else:
-                    showwronganswer()
-                    window.after(500, showquestionwrong)
+        main(event)
 
     elif stimulate_list[count][3] == 12 and stimulate_list[count - 1][3] == 1:
         if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
@@ -55,7 +34,7 @@ def controlcore(event):
             if event.keysym == "e" or event.keysym == "E":
                 if stimulate_list[count - 1][1] == "right":
                     showwronganswer()
-                    window.after(500, showinstructionwrong(block02Ins, block02BtnLeft, block02BtnRight))
+                    window.after(500, showinstruction(block02Ins, block02BtnLeft, block02BtnRight))
                 else:
                     showinstruction(block02Ins, block02BtnLeft, block02BtnRight)
 
@@ -64,30 +43,13 @@ def controlcore(event):
                     showinstruction(block02Ins, block02BtnLeft, block02BtnRight)
                 else:
                     showwronganswer()
-                    window.after(500, showinstructionwrong(block02Ins, block02BtnLeft, block02BtnRight))
+                    window.after(500, showinstruction(block02Ins, block02BtnLeft, block02BtnRight))
 
     elif stimulate_list[count][3] == 2 and stimulate_list[count - 1][3] == 12:
-        if (event.keysym == "s" or event.keysym == "S") and detect_key == True:
-            detect_key = False
-            showfirstquestion(block02Ins)
+        showfirstquestion(event, block02Ins)
 
     elif stimulate_list[count][3] == 2:
-        if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
-            detect_key = False
-            question.destroy()
-            if event.keysym == "e" or event.keysym == "E":
-                if stimulate_list[count - 1][1] == "right":
-                    showwronganswer()
-                    window.after(500, showquestionwrong)
-                else:
-                    showquestion()
-
-            elif event.keysym == "i" or event.keysym == "I":
-                if stimulate_list[count - 1][1] == "right":
-                    showquestion()
-                else:
-                    showwronganswer()
-                    window.after(500, showquestionwrong)
+        main(event)
 
     elif stimulate_list[count][3] == 23 and stimulate_list[count - 1][3] == 2:
         if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
@@ -96,7 +58,7 @@ def controlcore(event):
             if event.keysym == "e" or event.keysym == "E":
                 if stimulate_list[count - 1][1] == "right":
                     showwronganswer()
-                    window.after(500, showinstructionwrong(block03Ins, block03BtnLeft, block03BtnRight))
+                    window.after(500, showinstruction(block03Ins, block03BtnLeft, block03BtnRight))
                 else:
                     showinstruction(block03Ins, block03BtnLeft, block03BtnRight)
 
@@ -105,12 +67,10 @@ def controlcore(event):
                     showinstruction(block03Ins, block03BtnLeft, block03BtnRight)
                 else:
                     showwronganswer()
-                    window.after(500, showinstructionwrong(block03Ins, block03BtnLeft, block03BtnRight))
+                    window.after(500, showinstruction(block03Ins, block03BtnLeft, block03BtnRight))
 
     elif stimulate_list[count][3] == 3 and stimulate_list[count - 1][3] == 23:
-        if (event.keysym == "s" or event.keysym == "S") and detect_key == True:
-            detect_key = False
-            showfirstquestion_time(block03Ins)
+        showfirstquestion(event, block03Ins)
 
     elif stimulate_list[count][3] == 3:
         if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
@@ -123,13 +83,13 @@ def controlcore(event):
                     if block3_practice >= 8:
                         block3_wrongcount += 1
                     showwronganswer()
-                    window.after(500, showquestionwrong_time)
+                    window.after(500, showquestion)
                 else:
                     if block3_practice >= 8:
                         if stimulate_list[count - 1][2] == "c":
                             time_span = t_end - t_start
                             block3_DPPtime_list.append(time_span)
-                    showquestion_time()
+                    showquestion()
 
             elif event.keysym == "i" or event.keysym == "I":
                 if stimulate_list[count - 1][1] == "right":
@@ -137,12 +97,12 @@ def controlcore(event):
                         if stimulate_list[count - 1][2] == "c":
                             time_span = t_end - t_start
                             block3_KMTtime_list.append(time_span)
-                    showquestion_time()
+                    showquestion()
                 else:
                     if block3_practice >= 8:
                         block3_wrongcount += 1
                     showwronganswer()
-                    window.after(500, showquestionwrong_time)
+                    window.after(500, showquestion)
 
     elif stimulate_list[count][3] == 34 and stimulate_list[count - 1][3] == 3:
         if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
@@ -153,7 +113,7 @@ def controlcore(event):
                 if stimulate_list[count - 1][1] == "right":
                     block3_wrongcount += 1
                     showwronganswer()
-                    window.after(500, showinstructionwrong(block04Ins, block04BtnLeft, block04BtnRight))
+                    window.after(500, showinstruction(block04Ins, block04BtnLeft, block04BtnRight))
                 else:
                     if stimulate_list[count - 1][2] == "c":
                         time_span = t_end - t_start
@@ -169,30 +129,13 @@ def controlcore(event):
                 else:
                     block3_wrongcount += 1
                     showwronganswer()
-                    window.after(500, showinstructionwrong(block04Ins, block04BtnLeft, block04BtnRight))
+                    window.after(500, showinstruction(block04Ins, block04BtnLeft, block04BtnRight))
 
     elif stimulate_list[count][3] == 4 and stimulate_list[count - 1][3] == 34:
-        if (event.keysym == "s" or event.keysym == "S") and detect_key == True:
-            detect_key = False
-            showfirstquestion(block04Ins)
+        showfirstquestion(event, block04Ins)
 
     elif stimulate_list[count][3] == 4:
-        if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
-            detect_key = False
-            question.destroy()
-            if event.keysym == "e" or event.keysym == "E":
-                if stimulate_list[count - 1][1] == "right":
-                    showwronganswer()
-                    window.after(500, showquestionwrong)
-                else:
-                    showquestion()
-
-            elif event.keysym == "i" or event.keysym == "I":
-                if stimulate_list[count - 1][1] == "right":
-                    showquestion()
-                else:
-                    showwronganswer()
-                    window.after(500, showquestionwrong)
+        main(event)
 
     elif stimulate_list[count][3] == 45 and stimulate_list[count - 1][3] == 4:
         if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
@@ -201,7 +144,7 @@ def controlcore(event):
             if event.keysym == "e" or event.keysym == "E":
                 if stimulate_list[count - 1][1] == "right":
                     showwronganswer()
-                    window.after(500, showinstructionwrong(block05Ins, block05BtnLeft, block05BtnRight))
+                    window.after(500, showinstruction(block05Ins, block05BtnLeft, block05BtnRight))
                 else:
                     showinstruction(block05Ins, block05BtnLeft, block05BtnRight)
 
@@ -210,12 +153,10 @@ def controlcore(event):
                     showinstruction(block05Ins, block05BtnLeft, block05BtnRight)
                 else:
                     showwronganswer()
-                    window.after(500, showinstructionwrong(block05Ins, block05BtnLeft, block05BtnRight))
+                    window.after(500, showinstruction(block05Ins, block05BtnLeft, block05BtnRight))
 
     elif stimulate_list[count][3] == 5 and stimulate_list[count - 1][3] == 45:
-        if (event.keysym == "s" or event.keysym == "S") and detect_key == True:
-            detect_key = False
-            showfirstquestion_time(block05Ins)
+        showfirstquestion(event, block05Ins)
 
     elif stimulate_list[count][3] == 5:
         if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
@@ -228,13 +169,13 @@ def controlcore(event):
                     if block5_practice >= 8:
                         block5_wrongcount += 1
                     showwronganswer()
-                    window.after(500, showquestionwrong_time)
+                    window.after(500, showquestion)
                 else:
                     if block5_practice >= 8:
                         if stimulate_list[count - 1][2] == "c":
                             time_span = t_end - t_start
                             block5_KMTtime_list.append(time_span)
-                    showquestion_time()
+                    showquestion()
 
             elif event.keysym == "i" or event.keysym == "I":
                 if stimulate_list[count - 1][1] == "right":
@@ -242,12 +183,12 @@ def controlcore(event):
                         if stimulate_list[count - 1][2] == "c":
                             time_span = t_end - t_start
                             block5_DPPtime_list.append(time_span)
-                    showquestion_time()
+                    showquestion()
                 else:
                     if block5_practice >= 8:
                         block5_wrongcount += 1
                     showwronganswer()
-                    window.after(500, showquestionwrong_time)
+                    window.after(500, showquestion)
 
     else:
         if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
@@ -276,52 +217,35 @@ def controlcore(event):
 
             printresult()
 
+def main(event):
+    global detect_key
+    if (event.keysym == "e" or event.keysym == "i" or event.keysym == "E" or event.keysym == "I") and detect_key == True:
+        detect_key = False
+        question.destroy()
+        if event.keysym == "e" or event.keysym == "E":
+            if stimulate_list[count - 1][1] == "right":
+                showwronganswer()
+                window.after(500, showquestion)
+            else:
+                showquestion()
+
+        elif event.keysym == "i" or event.keysym == "I":
+            if stimulate_list[count - 1][1] == "right":
+                showquestion()
+            else:
+                showwronganswer()
+                window.after(500, showquestion)
+
 def showquestion():
     global count
     global question
-    global image_file
-    global detect_key
-    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
-    question = tk.Label(window, image = image_file)
-    question.place(x = 200, y = 50)
-    count += 1
-    detect_key = True
-    window.bind("<KeyPress>", controlcore)
-    
-def showquestionwrong():
-    global count
-    global question
-    global image_file
-    global detect_key
-    wronganswer.destroy()
-    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
-    question = tk.Label(window, image = image_file)
-    question.place(x = 200, y = 50)
-    count += 1
-    detect_key = True
-    window.bind("<KeyPress>", controlcore)
-
-def showquestion_time():
-    global count
-    global question
     global t_start
     global image_file
     global detect_key
-    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
-    question = tk.Label(window, image = image_file)
-    question.place(x = 200, y = 50)
-    count += 1
-    t_start = time.time()
-    detect_key = True
-    window.bind("<KeyPress>", controlcore)
-
-def showquestionwrong_time():
-    global count
-    global question
-    global t_start
-    global image_file
-    global detect_key
-    wronganswer.destroy()
+    global have_wronganswer
+    if have_wronganswer == True:
+        wronganswer.destroy()
+        have_wronganswer = False
     image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
     question = tk.Label(window, image = image_file)
     question.place(x = 200, y = 50)
@@ -333,19 +257,10 @@ def showquestionwrong_time():
 def showinstruction(ins, btnLeft, btnRight):
     global count
     global detect_key
-    ins.place(x = 300, y = 200)
-    btnLeft.place(x = 180, y = 500)
-    btnRight.place(x = 540, y = 500)
-    coverBtn.place(x = 310, y = 500)
-    coverIns.place(x = 350, y = 540)
-    count += 1
-    detect_key = True
-    window.bind("<KeyPress>", controlcore) 
-
-def showinstructionwrong(ins, btnLeft, btnRight):
-    global count
-    global detect_key
-    wronganswer.destroy()
+    global have_wronganswer
+    if have_wronganswer == True:
+        wronganswer.destroy()
+        have_wronganswer = False
     ins.place(x = 300, y = 200)
     btnLeft.place(x = 180, y = 500)
     btnRight.place(x = 540, y = 500)
@@ -357,40 +272,29 @@ def showinstructionwrong(ins, btnLeft, btnRight):
 
 def showwronganswer():
     global wronganswer
+    global have_wronganswer
+    have_wronganswer = True
     wronganswer = tk.Label(window, text = "Wrong Answer!", bg = "whitesmoke", fg = "red", font = ("微軟正黑體", 28), width = 20, height = 3)
     wronganswer.place(x = 200, y = 200)
 
-def showfirstquestion(ins):
-    global question
-    global count
-    global image_file
-    global detect_key
-    coverBtn.place_forget()
-    coverIns.place_forget()
-    ins.destroy()
-    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
-    question = tk.Label(window, image = image_file)
-    question.place(x = 200, y = 50)
-    count += 1
-    detect_key = True
-    window.bind("<KeyPress>", controlcore)
-
-def showfirstquestion_time(ins):
+def showfirstquestion(event, ins):
     global question
     global count
     global t_start
     global image_file
     global detect_key
-    coverBtn.place_forget()
-    coverIns.place_forget()
-    ins.destroy()
-    image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
-    question = tk.Label(window, image = image_file)
-    question.place(x = 200, y = 50)
-    count += 1
-    t_start = time.time()
-    detect_key = True
-    window.bind("<KeyPress>", controlcore)
+    if (event.keysym == "s" or event.keysym == "S") and detect_key == True:
+        detect_key = False
+        coverBtn.place_forget()
+        coverIns.place_forget()
+        ins.destroy()
+        image_file = ImageTk.PhotoImage(Image.open(stimulate_list[count][0]))
+        question = tk.Label(window, image = image_file)
+        question.place(x = 200, y = 50)
+        count += 1
+        t_start = time.time()
+        detect_key = True
+        window.bind("<KeyPress>", controlcore)
 
 def printresult():
     global block3_DPPtime_total
@@ -539,6 +443,7 @@ block5_wrongcount = 0
 block3_practice = 0
 block5_practice = 0
 detect_key = True
+have_wronganswer = False
 window.bind("<KeyPress>", controlcore)
 
 block3_DPPtime_total = 0
@@ -554,6 +459,5 @@ undone
 排版
 
 maybe
-音檔
 圖示
 """
